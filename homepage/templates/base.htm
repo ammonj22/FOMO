@@ -1,0 +1,84 @@
+## this is the skeleton of all pages on in this app - it defines the basic html tags
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+
+    <div id="maintainance-message">
+        <%block name="maintainanceMessage"></%block>
+    </div>
+
+
+    <head>
+
+        <%block name = "title">
+            <title>FOMO</title>
+        </%block>
+
+        <link rel="shortcut icon" href="${ STATIC_URL }/homepage/media/favicon.ico" type="image/x-icon">
+        ## add any site-wide scripts or CSS here; for example, jquery:
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="${ STATIC_URL }homepage/media/bootstrap/js/bootstrap.min.js"></script>
+        <link type="text/css" rel="stylesheet" href="${ STATIC_URL }homepage/media/bootstrap/css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="${ STATIC_URL }homepage/media/bootstrap/css/bootstrap-theme.min.css">
+
+        ## render the static file links with the same name as this template
+        <script src="/django_mako_plus/dmp-common.min.js"></script>
+        ${ django_mako_plus.links(self) }
+
+        <%block name = "header">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header navbar-brand">
+                        <img id="icon" src="${ STATIC_URL }/homepage/media/favicon.ico">
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <%block name="navbar_items">
+
+                        </%block>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-log-in"></span> Login
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Admin</a></li>
+                                <li><a href="#">Customer</a></li>
+                                <li><a href="#">Tutor</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </%block>
+
+    </head>
+    <body>
+        <div id ="above-columns">
+            <%block name="aboveColumns">
+            </%block>
+        </div>
+        <main class = "row">
+            <div id = "left-column" class = "col-md-4">
+                <%block name="left">
+                </%block>
+            </div>
+            <div id = "middle-column" class = "col-md-4">
+                <%block name="middle">
+                </%block>
+            </div>
+            <div id = "right-column" class = "col-md-4">
+                <%block name="right">
+                </%block>
+            </div>
+        </main>
+    </body>
+    <footer>
+        <div id = "footer">
+            <%block name="footer">
+                <%! from datetime import datetime %>
+                &copy; Copyright ${datetime.now().year}. All rights reserved.
+            </%block>
+        </div>
+    </footer>
+</html>

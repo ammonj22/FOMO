@@ -1,0 +1,34 @@
+#header {
+    background-color: black;
+}
+#above-columns {
+    background-color: blue;
+    height: 50px;
+    text-align: center;
+    padding-top: 5px;
+}
+#left-column {
+    background-color: green;
+    height: 500px;
+    text-align: center;
+    padding-top: 5px;
+}
+#middle-column {
+    background-color: red;
+    height: 500px;
+    text-align: center;
+    padding-top: 5px;
+}
+#right-column {
+    background-color: yellow;
+    height: 500px;
+    text-align: center;
+    padding-top: 5px;
+}
+#footer {
+    background-color: orange;
+    padding-left: 15px;
+    height: 50px;
+    padding-top: 15px;
+}
+
