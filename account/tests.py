@@ -43,7 +43,7 @@ class UserClassTest(TestCase):
         self.assertTrue(u2.is_staff)
 
     def test_authenticate_login(self):
-        """Test authenticate/login with is_ananymous"""
+        """Test authenticate/login with is_anonymous"""
 
     def test_logout(self):
         """Test logout with is_anonymous"""
@@ -56,3 +56,14 @@ class UserClassTest(TestCase):
 
     def test_field_changes(self):
         """Test changing fields such as first name, email, etc"""
+        u2 = amod.User.objects.get(email='lisa@simpsons.com')
+        u2.first_name = 'Marg'
+        u2.city = 'Des Moines'
+        u2.state = 'Iowa'
+        u2.email = 'marg@simpsons.com'
+        u2.save()
+        u3 = amod.User.objects.get(email = 'marg@simpsons.com')
+        self.assertEqual(u2.first_name, u3.first_name)
+        self.assertEqual(u2.city, u3.city)
+        self.assertEqual(u2.state, u3.state)
+
