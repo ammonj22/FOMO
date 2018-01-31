@@ -91,7 +91,7 @@
   pk: 4
   fields:
     name: Salesperson
-    permissions: [16, 17, 18, 1, 2, 3, 7, 8, 9]
+    permissions: []
 - model: account.user
   pk: 1
   fields:
@@ -99,8 +99,8 @@
     last_login: 2018-01-30 04:41:28.555372+00:00
     is_superuser: true
     email: homer@simpsons.com
-    first_name: ''
-    last_name: ''
+    first_name: Homer
+    last_name: Simpson
     is_staff: true
     is_active: true
     date_joined: 2018-01-29 17:29:31.207051+00:00

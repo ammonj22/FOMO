@@ -55,34 +55,35 @@ class UserClassTest(TestCase):
         g1.permissions.add(p1)
         g1.save()
 
-        self.assertTrue(self.u1.groups.filter(name='Salespeople').count() > 1)
+        self.assertTrue(len(self.u1.groups.filter(name='Salespeople')), 1)
         self.assertTrue(self.u1.has_perm('change_product_price'))
 
     def test_permissions(self):
         """Test adding permissions to users and then test those permissions"""
-        #self.u1.user_permissions.add()
-        #self.assertTrue(self.u1.has_perm())
+        p1 = Permission()
+        p1.codename = 'change_product_name'
+        p1.name = 'Change the name of a product'
+        p1.content_type = ContentType.objects.get(id=1)
+        p1.save()
 
-    def test_authenticate_login(self):
-        """Test authenticate/login with is_anonymous"""
-        u2 = authenticate(email='homer@simpsons.com', password=self.u1.check_password('doh!'))
-
-        if u2 is not None:
-            login(request, u2)
-            self.assertTrue(u2.is_authenticated)
-
-    def test_logout(self):
-        """Test logout with is_anonymous"""
+        p2 = Permission()
+        p2.codename = 'give_discount'
+        p2.name = 'Can give a discount to a customer'
+        p2.content_type = ContentType.objects.get(id=2)
+        p2.save()
+        self.u1.user_permissions.add(p1,p2)
+        self.assertTrue(self.u1.has_perm('change_product_name'))
+        self.assertTrue(self.u1.has_perm('give_discount'))
 
     def test_passwords(self):
         """Test set_password and check_password"""
-        u2 = amod.User.objects.get(email='lisa@simpsons.com')
+        u2 = amod.User.objects.get(email='homer@simpsons.com')
         u2.set_password('newPassword')
         self.assertTrue(u2.check_password('newPassword'))
 
     def test_field_changes(self):
         """Test changing fields such as first name, email, etc"""
-        u2 = amod.User.objects.get(email='lisa@simpsons.com')
+        u2 = amod.User.objects.get(email='homer@simpsons.com')
         u2.first_name = 'Marg'
         u2.city = 'Des Moines'
         u2.state = 'Iowa'
