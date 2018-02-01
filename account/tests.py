@@ -10,17 +10,6 @@ class UserClassTest(TestCase):
     def setUp(self):
         """Test creating, saving, and reloading a user"""
         self.u1 = amod.User.objects.get(email='homer@simpsons.com')
-        # self.u1.first_name = 'Lisa'
-        # self.u1.last_name = 'Simpson'
-        # self.u1.email = 'lisa@simpsons.com'
-        # self.u1.set_password('password')
-        # self.u1.address = '123 Fake Street'
-        # self.u1.city = 'Salt Lake City'
-        # self.u1.state = 'Utah'
-        # self.u1.zipcode = '12345'
-        # self.u1.is_active = True
-        # self.u1.is_superuser = True
-        # self.u1.is_staff = True
         self.u1.save()
 
     def test_load_save(self):
@@ -71,6 +60,7 @@ class UserClassTest(TestCase):
         p2.name = 'Can give a discount to a customer'
         p2.content_type = ContentType.objects.get(id=2)
         p2.save()
+
         self.u1.user_permissions.add(p1,p2)
         self.assertTrue(self.u1.has_perm('change_product_name'))
         self.assertTrue(self.u1.has_perm('give_discount'))
