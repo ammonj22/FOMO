@@ -1,6 +1,7 @@
 from django.conf import settings
 from django_mako_plus import view_function, jscontext
 from datetime import datetime, timezone
+from django import forms
 
 @view_function
 def process_request(request):
@@ -12,3 +13,8 @@ def process_request(request):
         jscontext('utc_epoch'): utc_time.timestamp(),
     }
     return request.dmp_render('signup.html', context)
+
+
+class SignupForm(forms.form):
+    FirstName = forms.CharField(label='First Name')
+    LastName = forms.CharField(label='Last Name')
