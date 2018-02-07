@@ -1,7 +1,11 @@
 <%inherit file="app_base.htm" />
 
 <%block name="aboveColumns">
-    <div class="content">
-        <h1>Sign Up</h1>
-    </div>
+    <form action="/account/signup/" method="POST">
+
+        ${ csrf_input }
+        ${ form.as_p() }
+        <input type="submit" value="Submit" />
+
+    </form>
 </%block>
