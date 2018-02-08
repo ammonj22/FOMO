@@ -36,15 +36,16 @@
 
                         </%block>
                     </ul>
+
                     <ul class="nav navbar-nav navbar-right">
                         <li class = ${'active' if request.dmp_router_page == 'signup' else ''}><a href="/account/signup/"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="/account/login/"><span class="glyphicon glyphicon-log-in"></span> Login
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Admin</a></li>
-                                <li><a href="#">Customer</a></li>
-                                <li><a href="#">Tutor</a></li>
+                                <li><a href="#">Account</a></li>
+                                <li><a href="#">Settings</a></li>
+                                <li><a href="/account/logout/">Logout</a></li>
                             </ul>
                         </li>
                     </ul>
