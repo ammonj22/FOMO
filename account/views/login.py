@@ -6,22 +6,20 @@ from account import models as amod
 import re
 from django.contrib.auth import authenticate, login
 from formlib import Formless
+from django.http import HttpResponseRedirect
 
 @view_function
 def process_request(request):
-    if request.method == 'POST':
-        form = LoginForm(request, request.POST)
-        if form.is_valid():
-            form.commit()
+    print('<<<<<<<<<<', 'I did something')
+    form = LoginForm(request)
+    if form.is_valid():
+        form.commit()
 
-            raise RedirectException('/account/')
-    else:
-        form = LoginForm(request)
+        return HttpResponseRedirect('/account/')
 
-    context = {
-        'form': form,
-    }
-    return request.dmp_render('index.html', context)
+    return request.dmp_render('login.html', {
+        'form' : form,
+    })
 
 class LoginForm(Formless):
     def init(self):
@@ -30,7 +28,7 @@ class LoginForm(Formless):
         self.user = None
 
     def clean(self):
-        self.user = authenticate(email=self.cleaned_data.get('email'), password = self.password)
+        self.user = authenticate(email=self.cleaned_data.get('email'), password = self.cleaned_data.get('password'))
         if self.user is None:
             raise forms.ValidationError('Invalid email or password.')
 
